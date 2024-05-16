@@ -1,0 +1,12 @@
+﻿
+<h2>Your new deck id is: @ViewBag.TheIdForTheShuffledDeck</h2>
+<p>Use the deck id to draw cards from the deck</p>
+
+<form asp-action="DrawCards" method="get">
+    <input type="hidden" name="deckId" value="@ViewBag.TheIdForTheShuffledDeck" />
+    <div class="form-group">
+        <label for="count">How many cards do you want?</label>
+        <input type="number" class="form-control" name="count" id="count" value="5" min="1" max="52" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Draw Cards</button>
+</form>

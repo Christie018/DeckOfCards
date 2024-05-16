@@ -1,0 +1,31 @@
+﻿@model CardsViewModel;
+
+<h2>Drawn Cards</h2>
+
+
+<form asp-action="DrawCards" method="post">
+
+    <div>
+        @for (int i = 0; i < Model.Cards.Count; i++)
+        {
+            <div class="card">
+                <img src="@Model.Cards[i].Image" alt="@Model.Cards[i].Value of @Model.Cards[i].Suit" height="200px" width="150px" />
+                <p>@Model.Cards[i].Value of @Model.Cards[i].Suit</p>
+                <input asp-for="@Model.Cards[i].IsKept" type="checkbox" />Keep
+                <input type="hidden" asp-for="@Model.Cards[i].Suit" />
+                <input type="hidden" asp-for="@Model.Cards[i].Value" />
+                <input type="hidden" asp-for="@Model.Cards[i].Image" />
+            </div>
+        }
+    </div>
+
+    <input type="hidden" name="deckId" value="@Model.DeckId" />
+    <div class="form-group">
+        <label for="count">How many more cards do you want?</label>
+        <input type="number" class="form-control" name="count" id="count" min="1" max="@Model.Remaining" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Draw Cards</button>
+</form>
+
+
+<p>There are @Model.Remaining cards left in the deck.</p>
